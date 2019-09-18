@@ -61,6 +61,50 @@
   </div>
 </nav>
    <h1 class="title" >Сreate your task and don't forget</h1>
+   <form action="/signup" id="signup">
+       <div class="field">
+           <label class="label">Name</label>
+           <div class="control">
+               <input class="input" type="text" placeholder="Text input">
+           </div>
+       </div>
+       <div class="field">
+           <label class="label">Login</label>
+           <div class="control has-icons-left has-icons-right">
+               <input class="input " type="text" placeholder="Text input" required >
+               <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+               <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+           </div>
+           <p class="help is-success is-hidden">This login is available</p>
+       </div>
+       <div class="field">
+           <label class="label">Password</label>
+           <p class="control has-icons-left">
+               <input class="input" type="password" placeholder="Password" required>
+               <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+           </p>
+       </div>
+       <div class="field is-grouped">
+           <div class="control">
+               <button class="button is-link">Submit</button>
+           </div>
+       </div>
+   </form>
+   <footer class="footer">
+       <div class="content has-text-centered">
+           <p>
+               <strong>Made</strong> by <a href="http://genya9000.github.io" target="_blank">Yevhen Khaliman</a>. The source code is licensed
+               <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+               is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+           </p>
+       </div>
+   </footer>
    <script type="text/javascript" src="lib/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="js/main.js"></script>
