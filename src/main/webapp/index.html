@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Online store</title>
+        <title>Task Manager</title>
         <link rel="stylesheet" href="css/main.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-        
+
     </head>
     <body>
 
@@ -34,25 +34,25 @@
             Home
         </a>
 
-        <a class="navbar-item">
+        <a class="navbar-item" onclick="alert('Login to your account first')">
             Create task
         </a>
-        <a class="navbar-item">
+        <a class="navbar-item" onclick="alert('Login to your account first')">
             Update
         </a>
 
-        <a class="navbar-item">
+        <a class="navbar-item" onclick="alert('Login to your account first')">
             Delete
         </a>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
+        <div class="buttons" >
+          <a class="button is-primary" id="asignup">
             <strong>Sign up</strong>
           </a>
-          <a class="button is-light">
+          <a class="button is-light" id="asignin">
             Log in
           </a>
         </div>
@@ -60,18 +60,13 @@
     </div>
   </div>
 </nav>
+   <section class="section">
    <h1 class="title" >Сreate your task and don't forget</h1>
-   <form action="/signup" id="signup">
-       <div class="field">
-           <label class="label">Name</label>
-           <div class="control">
-               <input class="input" type="text" placeholder="Text input">
-           </div>
-       </div>
+   <form action="signin" id="signin" >
        <div class="field">
            <label class="label">Login</label>
            <div class="control has-icons-left has-icons-right">
-               <input class="input " type="text" placeholder="Text input" required >
+               <input class="input " type="text" placeholder="Text input" >
                <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -84,7 +79,7 @@
        <div class="field">
            <label class="label">Password</label>
            <p class="control has-icons-left">
-               <input class="input" type="password" placeholder="Password" required>
+               <input class="input" type="password" placeholder="Password" >
                <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>
@@ -92,10 +87,52 @@
        </div>
        <div class="field is-grouped">
            <div class="control">
-               <button class="button is-link">Submit</button>
+               <input type="button"  class="button is-link" id="btnin" value="Submit">
+           </div>
+           <div class="content">
+               <a class="button is-text cancel">Cancel</a>
            </div>
        </div>
    </form>
+   <form action="signup" id="signup" method="post" >
+       <div class="field">
+           <label class="label">Name</label>
+           <div class="control">
+               <input class="input" type="text" placeholder="Text input">
+           </div>
+       </div>
+       <div class="field">
+           <label class="label">Login</label>
+           <div class="control has-icons-left has-icons-right">
+               <input class="input " type="text" placeholder="Text input"  >
+               <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+               <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+           </div>
+           <p class="help is-success is-hidden">This login is available</p>
+       </div>
+       <div class="field">
+           <label class="label">Password</label>
+           <p class="control has-icons-left">
+               <input class="input" type="password" placeholder="Password" >
+               <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+           </p>
+       </div>
+       <div class="field is-grouped">
+           <div class="control">
+               <input type="button"  class="button is-link" id="btnup" value="Submit">
+           </div>
+           <div class="content">
+               <a class="button is-text cancel1 ">Cancel</a>
+           </div>
+       </div>
+   </form>
+   </section>
    <footer class="footer">
        <div class="content has-text-centered">
            <p>
@@ -107,7 +144,7 @@
    </footer>
    <script type="text/javascript" src="lib/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="js/main.js"></script>
+   <script src="js/main.js"></script>
         
         </body>
         </html>
