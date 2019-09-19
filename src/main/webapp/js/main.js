@@ -8,8 +8,13 @@ $(document).ready(function() {
       $(".navbar-menu").toggleClass("is-active");
 
   });
-  
+  /*$("#signup").hide();*/
 });
 $(function () {
-    $("#s")
-})
+    $("#asignup, .cancel1").click(function () {
+$("#signup").toggle(1000);
+    });
+    $("#asignin, .cancel").click(function () {
+        $("#signin").toggle(1000);
+    });
+});
