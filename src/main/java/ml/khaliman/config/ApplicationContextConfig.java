@@ -1,5 +1,4 @@
 package ml.khaliman.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,20 +6,15 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
-
 @Configuration
-
 @ComponentScan("ml.khaliman.*")
-
 public class ApplicationContextConfig {
-
     @Bean(name = "viewResolver")
     public ViewResolver getViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
         System.out.println("Create Bean viewResolver");
-
         viewResolver.setCache(true);
-        viewResolver.setPrefix("");
+        viewResolver.setPrefix("/webapp/templates/");
         viewResolver.setSuffix(".ftl");
         return viewResolver;
     }
@@ -28,10 +22,8 @@ public class ApplicationContextConfig {
     @Bean(name = "freemarkerConfig")
     public FreeMarkerConfigurer getFreemarkerConfig() {
         FreeMarkerConfigurer config = new FreeMarkerConfigurer();
-
         // Folder containing FreeMarker templates.
         config.setTemplateLoaderPath("/webapp/templates/");
         return config;
     }
-
 }
