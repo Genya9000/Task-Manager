@@ -1,5 +1,4 @@
 package ml.khaliman.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,21 +20,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
 @Configuration
 @EnableWebMvc
 @ComponentScan("ml.khaliman")
 @EnableTransactionManagement
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-
-
-
-
-
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
@@ -46,13 +40,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
             (DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         Properties jpaProp = new Properties();
         jpaProp.put("hibernate.hbm2ddl.auto", "create");
-
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactory.setJpaProperties(jpaProp);
         entityManagerFactory.setPackagesToScan("ml.khaliman");
-
         return entityManagerFactory;
     }
 
@@ -61,8 +53,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
-        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
-
+        adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
         return adapter;
     }
 
@@ -70,14 +61,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("db.url=jdbc:postgresql://localhost:5432/task");
+        ds.setUrl("jdbc:postgresql://localhost:5432/task");
         ds.setUsername("admin");
         ds.setPassword("Admin9000%");
-
         return ds;
     }
-
-
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
