@@ -25,8 +25,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findOne(long id) {
-        return entityManager.getReference(User.class, id);
+    public User findOne(String login1) {
+        return  entityManager.find(User.class, login1);
     }
 
     @Override

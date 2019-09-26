@@ -10,5 +10,5 @@ public interface TaskService {
     void addTask(Task task);
     void addUser(User user);
     void deleteTask(long[] ids);
-
+    boolean ifExist(String login);
 }

@@ -3,27 +3,49 @@ import ml.khaliman.model.User;
 import ml.khaliman.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 
 @org.springframework.stereotype.Controller
 public class Controller {
-    private User user= new User();
+    private HttpSession session;
     @Autowired
     private TaskService taskService;
 
-
     @PostMapping("/signup")
     public String onSignUp(Model model, @RequestParam String userName, @RequestParam String userLogin,
-                           @RequestParam String userPassword, HttpSession httpSession) {
-    model.addAttribute("name", userName);
+                           @RequestParam String userPassword, HttpServletRequest req, HttpServletResponse resp) throws NoSuchFieldException {
+        resp.setContentType("text/html;charset=UTF-8");
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if (taskService.ifExist(userLogin)) {
+            User user = User.builder().name(userName).login(userLogin).password(userPassword).build();
+            taskService.addUser(user);
+            session = req.getSession();
+            session.setAttribute("user", userName);
+            session.setMaxInactiveInterval(60 * 60 * 24 * 10);
+            System.out.println(session.getId());
+            model.addAttribute("name", session.getAttribute("user"));
+            return "user";
+        }
 
-taskService.addUser(User.builder().name(userName).login(userLogin).password(userPassword).build());
-        httpSession.setAttribute("user", user);
-return "user";
-}
+        else model.addAttribute("signUpError", "A user with that username already exists,\n" +
+                "try to choose another");
+        return "index";
+    }
+    @GetMapping("/logOut")
+    public String logOut() {
+        session.invalidate();
+        return "redirect:index.html";
+    }
 }
