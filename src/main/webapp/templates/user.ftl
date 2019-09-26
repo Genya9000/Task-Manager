@@ -1,3 +1,4 @@
+<#ftl encoding="UTF-8"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
             <div class="navbar-item">
                 <div class="buttons" >
 
-                    <a class="button is-light" >
+                    <a class="button is-light" onClick='location.href="/logOut"'>
                         Log out
                     </a>
                 </div>
