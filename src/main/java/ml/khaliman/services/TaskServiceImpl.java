@@ -34,9 +34,7 @@ public class TaskServiceImpl implements TaskService {
     }
     @Transactional
     public boolean ifExist(String login) {
-       if(userDAO.findOne(login).equals(null))
-           return false;
-       else return true;
+        return userDAO.findOne(login) != null;
 
     }
 

@@ -62,10 +62,23 @@
 </nav>
    <section class="section">
    <h1 class="title" >Сreate your task and don't forget</h1>
-       <div class="notification is-danger">
-           <button class="delete"></button>
+       <#--<div class="notification is-danger" id="delete1" style="width: 50vw; display: block; text-align: center;
+    margin-left: auto;
+    margin-right: auto">
+           <a class="delete" > </a>
            ${signUpError}
-       </div>
+       </div>-->
+       <article class="message is-danger" id="delete1" style="width: 50vw; display: block; text-align: center;
+    margin-left: auto;
+    margin-right: auto">
+           <div class="message-header">
+               <p>Danger</p>
+               <button class="delete" aria-label="delete"></button>
+           </div>
+           <div class="message-body">
+               ${signUpError}
+           </div>
+       </article>
    <form action="signin" id="signin" >
        <div class="field">
            <label class="label">Login</label>

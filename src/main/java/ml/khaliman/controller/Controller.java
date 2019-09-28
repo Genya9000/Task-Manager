@@ -28,7 +28,7 @@ public class Controller {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (taskService.ifExist(userLogin)) {
+        if (!taskService.ifExist(userLogin)) {
             User user = User.builder().name(userName).login(userLogin).password(userPassword).build();
             taskService.addUser(user);
             session = req.getSession();
@@ -40,7 +40,7 @@ public class Controller {
         }
 
         else model.addAttribute("signUpError", "A user with that username already exists,\n" +
-                "try to choose another");
+                "try to choose another login");
         return "index";
     }
     @GetMapping("/logOut")
