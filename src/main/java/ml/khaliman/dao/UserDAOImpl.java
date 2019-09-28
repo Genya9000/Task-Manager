@@ -2,12 +2,10 @@ package ml.khaliman.dao;
 
 import ml.khaliman.model.User;
 import org.springframework.stereotype.Repository;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -26,7 +24,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User findOne(String login1) {
-        return  entityManager.find(User.class, login1);
+        try {
+            User user = (User) entityManager.createQuery("SELECT user FROM User user WHERE user.login =?1")
+                    .setParameter(1, login1).getSingleResult();
+            return user;
+        }
+        catch (NoResultException ex) {
+            System.out.println("Client not found!"); return null;}
+        catch (NonUniqueResultException ex) {
+            System.out.println("Non unique result!");
+            return null;
+        }
     }
 
     @Override

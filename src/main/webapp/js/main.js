@@ -17,4 +17,17 @@ $("#signup").toggle(1000);
     $("#asignin, .cancel").click(function () {
         $("#signin").toggle(1000);
     });
+    $(".delete").click(function () {
+        $("#delete1").remove();
+
+    });
 });
+
+/* document.addEventListener('DOMContentLoaded', () => {
+ (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+     $notification = $delete.parentNode;
+ $delete.addEventListener('click', () => {
+    $notification.parentNode.removeChild($notification);
+ });
+ });
+ });*/
