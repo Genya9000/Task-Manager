@@ -79,7 +79,7 @@
                ${signUpError}
            </div>
        </article>
-   <form action="signin" id="signin" >
+   <form action="/signIn" id="signin" method="post" class="signUpIN">
        <div class="field">
            <label class="label">Login</label>
            <div class="control has-icons-left has-icons-right">
@@ -111,7 +111,7 @@
            </div>
        </div>
    </form>
-   <form action="signup" id="signup" method="post" >
+   <form action="signup" id="signup" method="post" class="signUpIN">
        <div class="field">
            <label class="label">Name</label>
            <div class="control">
@@ -121,7 +121,7 @@
        <div class="field">
            <label class="label">Login</label>
            <div class="control has-icons-left has-icons-right">
-               <input class="input " type="text" placeholder="Text input" name="userLogin" >
+               <input class="input " type="text" placeholder="Text input" name="userLogin" required>
                <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -134,7 +134,7 @@
        <div class="field">
            <label class="label">Password</label>
            <p class="control has-icons-left">
-               <input class="input" type="password" placeholder="Password" name="userPassword">
+               <input class="input" type="password" placeholder="Password" name="userPassword" required>
                <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>

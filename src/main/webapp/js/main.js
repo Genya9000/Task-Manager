@@ -21,6 +21,9 @@ $("#signup").toggle(1000);
         $("#delete1").remove();
 
     });
+    $("#create").click(function () {
+        $("#createf").toggle(1000);
+    });
 });
 
 /* document.addEventListener('DOMContentLoaded', () => {

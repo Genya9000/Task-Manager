@@ -62,7 +62,7 @@
 </nav>
    <section class="section">
    <h1 class="title" >Сreate your task and don't forget</h1>
-   <form action="signin" id="signin" >
+   <form action="signIn" id="signin" method="post" class="signUpIN">
        <div class="field">
            <label class="label">Login</label>
            <div class="control has-icons-left has-icons-right">
@@ -87,14 +87,14 @@
        </div>
        <div class="field is-grouped">
            <div class="control">
-               <input type="button"  class="button is-link" id="btnin" value="Submit">
+               <button class="button is-link">Submit</button>
            </div>
            <div class="content">
-               <a class="button is-text cancel">Cancel</a>
+               <a class="button is-text cancel1 ">Cancel</a>
            </div>
        </div>
    </form>
-   <form action="signup" id="signup" method="post" >
+   <form action="signup" id="signup" method="post" class="signUpIN">
        <div class="field">
            <label class="label">Name</label>
            <div class="control">
@@ -104,7 +104,7 @@
        <div class="field">
            <label class="label">Login</label>
            <div class="control has-icons-left has-icons-right">
-               <input class="input " type="text" placeholder="Text input" name="userLogin" >
+               <input class="input " type="text" placeholder="Text input" name="userLogin" required>
                <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -117,7 +117,7 @@
        <div class="field">
            <label class="label">Password</label>
            <p class="control has-icons-left">
-               <input class="input" type="password" placeholder="Password" name="userPassword">
+               <input class="input" type="password" placeholder="Password" name="userPassword" required>
                <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>

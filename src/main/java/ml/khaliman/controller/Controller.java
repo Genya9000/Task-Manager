@@ -21,7 +21,7 @@ public class Controller {
 
     @PostMapping("/signup")
     public String onSignUp(Model model, @RequestParam String userName, @RequestParam String userLogin,
-                           @RequestParam String userPassword, HttpServletRequest req, HttpServletResponse resp) throws NoSuchFieldException {
+                           @RequestParam String userPassword, HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("text/html;charset=UTF-8");
         try {
             req.setCharacterEncoding("UTF-8");
@@ -37,15 +37,38 @@ public class Controller {
             System.out.println(session.getId());
             model.addAttribute("name", session.getAttribute("user"));
             return "user";
-        }
-
-        else model.addAttribute("signUpError", "A user with that username already exists,\n" +
+        } else model.addAttribute("signUpError", "A user with that username already exists,\n" +
                 "try to choose another login");
         return "index";
     }
+
     @GetMapping("/logOut")
     public String logOut() {
         session.invalidate();
         return "redirect:index.html";
+    }
+
+    @PostMapping("/signIn")
+    public String onSignIn(Model model, @RequestParam String userLogin,
+                           @RequestParam String userPassword, HttpServletRequest req, HttpServletResponse resp) {
+        resp.setContentType("text/html;charset=UTF-8");
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if (taskService.ifExist(userLogin)) {
+        User user = (User) taskService.findUser(userLogin);
+        if(userPassword.equals(user.getPassword())) {
+            session = req.getSession();
+            session.setAttribute("user", user.getName());
+            session.setMaxInactiveInterval(60 * 60 * 24 * 10);
+            System.out.println(session.getId());
+            model.addAttribute("name", session.getAttribute("user"));
+
+            return "user";
+        }}
+        else model.addAttribute("signUpError", "The password does not match the login, try another option");
+        return "index";
     }
 }
