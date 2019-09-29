@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> list() {
-        Query query = entityManager.createNativeQuery("SELECT * FROM users ");
+        Query query = entityManager.createQuery("SELECT user FROM User user ");
         return query.getResultList();
     }
 }

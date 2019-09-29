@@ -60,6 +60,26 @@
 </nav>
 <section class="section">
     <h1 class="title" >Welcome ${name}!</h1>
+    <form action="create" method="post">
+        <div class="field">
+            <div class="control">
+                <input class="input is-info" type="text" placeholder="Date input" required  style="text-align: center; display: inline">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea is-info" placeholder="What I should do" required text-align="center"></textarea>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Submit</button>
+            </div>
+            <div class="content">
+                <a class="button is-text cancel1 ">Cancel</a>
+            </div>
+        </div>
+    </form>
 
 </section>
 <footer class="footer">

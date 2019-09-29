@@ -38,6 +38,11 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
+    @Override
+    public User findUser(String login) {
+        return  (User) userDAO.findOne(login);
+    }
+
 /*
     @Transactional(readOnly=true)
     public List<User> listUsers() {
