@@ -34,7 +34,7 @@
                 Home
             </a>
 
-            <a class="navbar-item" >
+            <a class="navbar-item" id="create" >
                 Create task
             </a>
             <a class="navbar-item" >
@@ -60,26 +60,39 @@
 </nav>
 <section class="section">
     <h1 class="title" >Welcome ${name}!</h1>
-    <form action="create" method="post">
-        <div class="field">
-            <div class="control">
-                <input class="input is-info" type="text" placeholder="Date input" required  style="text-align: center; display: inline">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control">
-                <textarea class="textarea is-info" placeholder="What I should do" required text-align="center"></textarea>
-            </div>
-        </div>
+    <form action="create" method="post" id="createf" >
+
+        <input class="input is-info field control" type="date" placeholder="Date input" required
+               style="text-align: center; " name="userDate">
+
+
+        <textarea class="textarea is-info field control" placeholder="What I should do" required
+                  style="text-align: center; " name="userText"></textarea>
+
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link">Submit</button>
+                <button class="button is-link " >Submit</button>
             </div>
             <div class="content">
                 <a class="button is-text cancel1 ">Cancel</a>
             </div>
         </div>
     </form>
+    <table class="table is-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Your Task</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#if tasks??>
+        <#list tasks as task>
+        <tr><td>${task.id}<td>${task.date}<td>${task.text}
+                </#list></#if>
+        </tbody>
+    </table>
 
 </section>
 <footer class="footer">
