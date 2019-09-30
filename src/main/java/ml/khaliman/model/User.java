@@ -16,12 +16,12 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String login;
     private String password;
     @OneToMany(mappedBy="user", cascade= CascadeType.ALL)
-    private List<Task> tasks = new ArrayList<>();
+    private List<Task> tasks;
 
 }

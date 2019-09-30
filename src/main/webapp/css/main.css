@@ -6816,11 +6816,21 @@ label.panel-block {
     width: max-content;
     position: absolute;
     right: 10vw;
+    display: none;
+
     /*border: 2px solid blue;*/
 
 }
 #createf{
   position: absolute;
-  left: 10vw;
+  left: 35vw;
   display: none;
+  width: 30vw;
+
+}
+table {
+    position: absolute;
+    right: 10vw;
+    width: 80vw;
+
 }

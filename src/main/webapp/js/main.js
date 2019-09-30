@@ -21,8 +21,9 @@ $("#signup").toggle(1000);
         $("#delete1").remove();
 
     });
-    $("#create").click(function () {
+    $("#create, .cancel1").click(function () {
         $("#createf").toggle(1000);
+        $(".table").toggle(500);
     });
 });
 
