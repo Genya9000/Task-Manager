@@ -14,7 +14,7 @@ import java.sql.Date;
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id")

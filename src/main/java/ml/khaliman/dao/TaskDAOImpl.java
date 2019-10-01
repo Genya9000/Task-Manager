@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.List;
@@ -30,25 +31,20 @@ public class TaskDAOImpl implements TaskDAO {
         }
     }
 
-   /* @Override
-    public List<Task> list(User user, int start, int count) {
-        TypedQuery<Task> query;
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Task> list(User user) {
+        Query query = entityManager.createQuery("SELECT task FROM  Task task WHERE task.user = ?1 ORDER BY task.date DESC")
+                .setParameter(1, user);
 
-        if (user != null) {
-            query = entityManager.createQuery("SELECT c FROM Task c WHERE c.user = :user ORDER BY c.id DESC", Task.class);
-            query.setParameter("user", user);
-        } else {
-            query = entityManager.createQuery("SELECT c FROM Task c ORDER BY c.id DESC", Task.class);
-        }
-
-        if (start >= 0) {
-            query.setFirstResult(start);
-            query.setMaxResults(count);
-        }
-
+        int pageNumber = 1;
+        int pageSize = 5;
+        query.setFirstResult((pageNumber-1) * pageSize);
+        query.setMaxResults(pageSize);
         return query.getResultList();
-    }
 
+    }
+/*
     @Override
     public List<Task> list(Date pattern) {
         TypedQuery<Task> query = entityManager.createQuery("SELECT c FROM Task c WHERE c.date LIKE :pattern", Task.class);

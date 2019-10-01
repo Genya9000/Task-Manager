@@ -43,25 +43,22 @@ public class TaskServiceImpl implements TaskService {
         return  (User) userDAO.findOne(login);
     }
 
-/*
+
     @Transactional(readOnly=true)
     public List<User> listUsers() {
         return userDAO.list();
     }
 
     @Transactional(readOnly=true)
-    public List<Task> listTasks(User user, int start, int count) {
-        return taskDAO.list(user, start, count);
-    }
-
-
-
-    @Transactional(readOnly=true)
     public List<Task> listTasks(User user) {
-        return taskDAO.list(user, 0, 0);
+        return taskDAO.list(user);
     }
 
-    @Transactional(readOnly = true)
+
+
+
+
+   /* @Transactional(readOnly = true)
     public long count() {
         return taskDAO.count();
     }
