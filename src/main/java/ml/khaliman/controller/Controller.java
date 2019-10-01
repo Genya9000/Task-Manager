@@ -36,10 +36,11 @@ public class Controller {
             User user = User.builder().name(userName).login(userLogin).password(userPassword).build();
             taskService.addUser(user);
             session = req.getSession();
-            session.setAttribute("user", userName);
+            session.setAttribute("userName", userName);
+            session.setAttribute("user", user);
             session.setMaxInactiveInterval(60 * 60 * 24 * 10);
             System.out.println(session.getId());
-            model.addAttribute("name", session.getAttribute("user"));
+            model.addAttribute("name", session.getAttribute("userName"));
             return "user";
         } else model.addAttribute("signUpError", "A user with that username already exists,\n" +
                 "try to choose another login");
@@ -64,14 +65,16 @@ public class Controller {
         if (taskService.ifExist(userLogin)) {
             User user = (User) taskService.findUser(userLogin);
             if (userPassword.equals(user.getPassword())) {
+                user.setTasks(taskService.listTasks(user));
                 session = req.getSession();
-                session.setAttribute("user", user.getName());
-                session.setAttribute("USER", user);
+                session.setAttribute("userName", user.getName());
+                session.setAttribute("user", user);
                 session.setAttribute("login", user.getLogin());
+
                 session.setMaxInactiveInterval(60 * 60 * 24 * 10);
-                System.out.println(session.getId());
-                model.addAttribute("name", session.getAttribute("user"));
-                model.addAttribute("tasks", null);
+                System.out.println(session.getAttribute("user").toString());
+                model.addAttribute("name", session.getAttribute("userName"));
+                model.addAttribute("tasks", user.getTasks());
                 return "user";
             }
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
@@ -87,13 +90,18 @@ public class Controller {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        Task task = Task.builder().date(userDate).text(userText).build();
+        System.out.println("Иду");
+        User user1 = (User) session.getAttribute("user");
+        System.out.println(user1.toString());
+        Task task = Task.builder().user(user1).date(userDate).text(userText).build();
+        System.out.println(task.toString());
         taskService.addTask(task);
         /*model.addAttribute("task", task);*/
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(task);
+        List<Task> tasks = taskService.listTasks(user1);
+        System.out.println(tasks.toString());
+
         model.addAttribute("tasks", tasks);
-        model.addAttribute("name", session.getAttribute("user"));
+        model.addAttribute("name", session.getAttribute("userName"));
         return "user";
     }
 }

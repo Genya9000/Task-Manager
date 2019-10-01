@@ -12,4 +12,5 @@ public interface TaskService {
     void deleteTask(long[] ids);
     boolean ifExist(String login);
     Object findUser(String login);
+    List<Task> listTasks(User user);
 }
