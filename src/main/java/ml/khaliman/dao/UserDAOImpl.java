@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             User user = (User) entityManager.createQuery("SELECT user FROM User user WHERE user.login =?1")
                     .setParameter(1, login1).getSingleResult();
-            user.setTasks(null);
+
             return user;
         }
         catch (NoResultException ex) {

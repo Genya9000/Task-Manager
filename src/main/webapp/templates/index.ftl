@@ -107,7 +107,7 @@
                <input type="button"  class="button is-link" id="btnin" value="Submit">
            </div>
            <div class="content">
-               <a class="button is-text cancel">Cancel</a>
+               <a class="button is-text cancel2">Cancel</a>
            </div>
        </div>
    </form>

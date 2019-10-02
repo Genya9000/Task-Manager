@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -32,9 +30,9 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+
     public List<Task> list(User user) {
-        Query query = entityManager.createQuery("SELECT task FROM  Task task WHERE task.user = ?1 ORDER BY task.date DESC")
+        Query query = entityManager.createQuery("SELECT task FROM  Task task WHERE task.user = ?1  ORDER BY task.date DESC ")
                 .setParameter(1, user);
 
         int pageNumber = 1;
