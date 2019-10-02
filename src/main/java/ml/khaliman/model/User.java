@@ -21,7 +21,7 @@ public class User {
     private String name;
     private String login;
     private String password;
-    @OneToMany(mappedBy="user", cascade= CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="user", cascade= CascadeType.ALL/*, fetch = FetchType.EAGER*/)
     private List<Task> tasks;
 
 }

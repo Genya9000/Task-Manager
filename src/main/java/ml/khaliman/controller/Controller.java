@@ -63,9 +63,11 @@ public class Controller {
             e.printStackTrace();
         }
         if (taskService.ifExist(userLogin)) {
+            System.out.println("user exist");
             User user = (User) taskService.findUser(userLogin);
+            System.out.println(user.toString());
             if (userPassword.equals(user.getPassword())) {
-                user.setTasks(taskService.listTasks(user));
+
                 session = req.getSession();
                 session.setAttribute("userName", user.getName());
                 session.setAttribute("user", user);
@@ -74,7 +76,7 @@ public class Controller {
                 session.setMaxInactiveInterval(60 * 60 * 24 * 10);
                 System.out.println(session.getAttribute("user").toString());
                 model.addAttribute("name", session.getAttribute("userName"));
-                model.addAttribute("tasks", user.getTasks());
+                model.addAttribute("tasks", null);
                 return "user";
             }
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
@@ -101,7 +103,7 @@ public class Controller {
         System.out.println(tasks.toString());
 
         model.addAttribute("tasks", tasks);
-        model.addAttribute("name", session.getAttribute("userName"));
+
         return "user";
     }
 }

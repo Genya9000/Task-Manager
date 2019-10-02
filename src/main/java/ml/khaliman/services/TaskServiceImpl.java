@@ -32,13 +32,14 @@ public class TaskServiceImpl implements TaskService {
     public void deleteTask(long[] ids) {
         taskDAO.delete(ids);
     }
-    @Transactional
+    @Transactional(readOnly=true)
     public boolean ifExist(String login) {
         return userDAO.findOne(login) != null;
 
     }
 
-    @Override
+
+    @Transactional(readOnly=true)
     public User findUser(String login) {
         return  (User) userDAO.findOne(login);
     }
