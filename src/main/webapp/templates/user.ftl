@@ -35,7 +35,7 @@
             </a>
 
             <a class="navbar-item" id="create" >
-                Create task
+                <p>Create task</p>
             </a>
             <a class="navbar-item" >
                 Update
@@ -82,15 +82,19 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>Mark</th>
             <th>Date</th>
             <th>Your Task</th>
         </tr>
         </thead>
         <tbody>
         <#if tasks??>
+        <form action="">
         <#list tasks as task>
-        <tr><td>${task.id}<td>${task.date}<td>${task.text}
-                </#list></#if>
+        <tr><td>${i=i+1}<td><label class="checkbox">
+                    <input type="checkbox" name="checkbox" value="${task.id}">
+                </label><td>${task.date}<td>${task.text}
+                </#list> </form></#if>
         </tbody>
     </table>
 

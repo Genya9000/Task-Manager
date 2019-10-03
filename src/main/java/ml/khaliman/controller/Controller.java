@@ -76,7 +76,8 @@ public class Controller {
                 session.setMaxInactiveInterval(60 * 60 * 24 * 10);
                 System.out.println(session.getAttribute("user").toString());
                 model.addAttribute("name", session.getAttribute("userName"));
-                model.addAttribute("tasks", null);
+                model.addAttribute("tasks", taskService.listTasks(user));
+
                 return "user";
             }
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
@@ -101,7 +102,7 @@ public class Controller {
         /*model.addAttribute("task", task);*/
         List<Task> tasks = taskService.listTasks(user1);
         System.out.println(tasks.toString());
-
+        model.addAttribute("name", user1.getName());
         model.addAttribute("tasks", tasks);
 
         return "user";
