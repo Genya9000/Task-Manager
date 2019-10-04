@@ -43,7 +43,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
             (DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         Properties jpaProp = new Properties();
         jpaProp.put("hibernate.hbm2ddl.auto", "update");
-        //jpaProp.put("hibernate.enable_lazy_load_no_trans", "true");
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
