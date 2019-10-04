@@ -99,12 +99,28 @@ public class Controller {
         Task task = Task.builder().user(user1).date(userDate).text(userText).build();
         System.out.println(task.toString());
         taskService.addTask(task);
-        /*model.addAttribute("task", task);*/
         List<Task> tasks = taskService.listTasks(user1);
         System.out.println(tasks.toString());
         model.addAttribute("name", user1.getName());
         model.addAttribute("tasks", tasks);
 
+        return "user";
+    }
+    @PostMapping("/deleteUpdate")
+    public String onSignIn(Model model, @RequestParam long[] checkbox, @RequestParam String submit,
+                            HttpServletRequest req, HttpServletResponse resp) {
+        resp.setContentType("text/html;charset=UTF-8");
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if (submit.equals("delete")) {
+            taskService.deleteTask(checkbox);
+        }
+        else {
+
+        }
         return "user";
     }
 }

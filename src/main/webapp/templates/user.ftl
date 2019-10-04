@@ -89,7 +89,7 @@
         </thead>
         <tbody>
         <#if tasks??>
-        <form action="">
+        <form action="deleteUpdate" method="post">
         <#list tasks as task>
         <tr><td>${i=i+1}<td><label class="checkbox">
                     <input type="checkbox" name="checkbox" value="${task.id}">
