@@ -38,11 +38,11 @@
                 <p>Create task</p>
             </a>
             <a class="navbar-item" >
-                Update
+                <p><input type="submit" name="submit" value="Update" form="updateDelete" style="border: none"></p>
             </a>
 
             <a class="navbar-item" >
-                Delete
+                <p><input type="submit" name="submit" value="Delete" form="updateDelete" style="border: none"></p>
             </a>
         </div>
 
@@ -89,9 +89,9 @@
         </thead>
         <tbody>
         <#if tasks??>
-        <form action="deleteUpdate" method="post">
+        <form action="deleteUpdate" method="post" id="updateDelete">
         <#list tasks as task>
-        <tr><td>${i=i+1}<td><label class="checkbox">
+        <tr><td><td><label class="checkbox">
                     <input type="checkbox" name="checkbox" value="${task.id}">
                 </label><td>${task.date}<td>${task.text}
                 </#list> </form></#if>

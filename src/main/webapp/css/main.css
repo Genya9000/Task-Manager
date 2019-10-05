@@ -6834,3 +6834,10 @@ table {
     width: 80vw;
 
 }
+tbody {
+  counter-reset: heading;
+}
+td:first-child  {
+  counter-increment: heading;
+  content: counter(heading);
+}

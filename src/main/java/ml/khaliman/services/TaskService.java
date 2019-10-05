@@ -13,4 +13,5 @@ public interface TaskService {
     boolean ifExist(String login);
     Object findUser(String login);
     List<Task> listTasks(User user);
+    void updateTask(long id, String text);
 }

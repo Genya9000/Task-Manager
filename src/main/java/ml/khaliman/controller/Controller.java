@@ -20,11 +20,13 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
     private HttpSession session;
+    private  User user;
+    private Task task;
     @Autowired
     private TaskService taskService;
 
     @PostMapping("/signup")
-    public String onSignUp(Model model, @RequestParam String userName, @RequestParam String userLogin,
+    public String onSignUp(Model model, @RequestParam(required = false) String userName, @RequestParam String userLogin,
                            @RequestParam String userPassword, HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("text/html;charset=UTF-8");
         try {
@@ -33,7 +35,7 @@ public class Controller {
             e.printStackTrace();
         }
         if (!taskService.ifExist(userLogin)) {
-            User user = User.builder().name(userName).login(userLogin).password(userPassword).build();
+            user = User.builder().name(userName).login(userLogin).password(userPassword).build();
             taskService.addUser(user);
             session = req.getSession();
             session.setAttribute("userName", userName);
@@ -64,7 +66,7 @@ public class Controller {
         }
         if (taskService.ifExist(userLogin)) {
             System.out.println("user exist");
-            User user = (User) taskService.findUser(userLogin);
+             user = (User) taskService.findUser(userLogin);
             System.out.println(user.toString());
             if (userPassword.equals(user.getPassword())) {
 
@@ -83,6 +85,12 @@ public class Controller {
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
         return "index";
     }
+    /*public Controller(User user){
+        this.user = user;
+    }*/
+    public User getUser(){
+        return user;
+    }
 
     @PostMapping("/create")
     public String createTask(Model model, @RequestParam Date userDate, @RequestParam String userText,
@@ -94,20 +102,20 @@ public class Controller {
             e.printStackTrace();
         }
         System.out.println("Иду");
-        User user1 = (User) session.getAttribute("user");
-        System.out.println(user1.toString());
-        Task task = Task.builder().user(user1).date(userDate).text(userText).build();
+        //user = (User) session.getAttribute("user");
+        System.out.println(user.toString());
+        task = Task.builder().user(user).date(userDate).text(userText).build();
         System.out.println(task.toString());
         taskService.addTask(task);
-        List<Task> tasks = taskService.listTasks(user1);
+        List<Task> tasks = taskService.listTasks(user);
         System.out.println(tasks.toString());
-        model.addAttribute("name", user1.getName());
+        model.addAttribute("name", user.getName());
         model.addAttribute("tasks", tasks);
 
         return "user";
     }
     @PostMapping("/deleteUpdate")
-    public String onSignIn(Model model, @RequestParam long[] checkbox, @RequestParam String submit,
+    public String onSignIn(Model model, @RequestParam long[] checkbox, @RequestParam String submit, @RequestParam(required = false) String text,
                             HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("text/html;charset=UTF-8");
         try {
@@ -115,12 +123,14 @@ public class Controller {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (submit.equals("delete")) {
+        if (submit.equals("Delete")) {
             taskService.deleteTask(checkbox);
         }
         else {
-
+            taskService.updateTask(checkbox[0], text);
         }
+        model.addAttribute("tasks",taskService.listTasks(user) );
+        model.addAttribute("name", user.getName());
         return "user";
     }
 }
