@@ -10,6 +10,5 @@ public interface TaskDAO {
     void add(Task task);
     void delete(long[] ids);
     List<Task> list(User user);
-   /* List<Task> list(Date pattern);
-    long count();*/
+   void update(long id, String text);
 }

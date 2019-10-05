@@ -42,6 +42,12 @@ public class TaskDAOImpl implements TaskDAO {
         return query.getResultList();
 
     }
+    @Override
+    public void update(long id, String text){
+        Task task = entityManager.find(Task.class, id);
+        task.setText(text);
+        entityManager.merge(task);
+    }
 /*
     @Override
     public List<Task> list(Date pattern) {

@@ -56,6 +56,11 @@ public class TaskServiceImpl implements TaskService {
         return taskDAO.list(user);
     }
 
+    @Transactional
+    public void updateTask(long id, String text) {
+        taskDAO.update(id, text);
+    }
+
 
 
 
