@@ -37,7 +37,7 @@
             <a class="navbar-item" id="create" >
                 <p>Create task</p>
             </a>
-            <a class="navbar-item" >
+            <a class="navbar-item" id="update">
                 <p><input type="submit" name="submit" value="Update" form="updateDelete" style="border: none"></p>
             </a>
 
@@ -91,7 +91,10 @@
         <#if tasks??>
         <form action="deleteUpdate" method="post" id="updateDelete">
         <#list tasks as task>
-        <tr><td><td><label class="checkbox">
+
+        <tr><td>
+                ${task?index}
+            <td><label class="checkbox">
                     <input type="checkbox" name="checkbox" value="${task.id}">
                 </label><td>${task.date}<td>${task.text}
                 </#list> </form></#if>

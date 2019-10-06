@@ -43,6 +43,7 @@ public class Controller {
             session.setMaxInactiveInterval(60 * 60 * 24 * 10);
             System.out.println(session.getId());
             model.addAttribute("name", session.getAttribute("userName"));
+            model.addAttribute("i", 0);
             return "user";
         } else model.addAttribute("signUpError", "A user with that username already exists,\n" +
                 "try to choose another login");
@@ -79,7 +80,7 @@ public class Controller {
                 System.out.println(session.getAttribute("user").toString());
                 model.addAttribute("name", session.getAttribute("userName"));
                 model.addAttribute("tasks", taskService.listTasks(user));
-
+                model.addAttribute("i", 0);
                 return "user";
             }
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
@@ -111,6 +112,7 @@ public class Controller {
         System.out.println(tasks.toString());
         model.addAttribute("name", user.getName());
         model.addAttribute("tasks", tasks);
+        model.addAttribute("i", 0);
 
         return "user";
     }
@@ -131,6 +133,7 @@ public class Controller {
         }
         model.addAttribute("tasks",taskService.listTasks(user) );
         model.addAttribute("name", user.getName());
+        model.addAttribute("i", 0);
         return "user";
     }
 }
