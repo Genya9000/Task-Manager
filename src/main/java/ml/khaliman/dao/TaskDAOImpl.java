@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public class TaskDAOImpl implements TaskDAO {
+    public static int pageNumber = 1;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -35,7 +36,7 @@ public class TaskDAOImpl implements TaskDAO {
         Query query = entityManager.createQuery("SELECT task FROM  Task task WHERE task.user = ?1  ORDER BY task.date DESC ")
                 .setParameter(1, user);
 
-        int pageNumber = 1;
+
         int pageSize = 5;
         query.setFirstResult((pageNumber-1) * pageSize);
         query.setMaxResults(pageSize);
