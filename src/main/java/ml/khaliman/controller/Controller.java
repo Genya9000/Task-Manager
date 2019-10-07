@@ -1,4 +1,5 @@
 package ml.khaliman.controller;
+import ml.khaliman.dao.TaskDAOImpl;
 import ml.khaliman.model.Task;
 import ml.khaliman.model.User;
 import ml.khaliman.services.TaskService;
@@ -117,7 +118,7 @@ public class Controller {
         return "user";
     }
     @PostMapping("/deleteUpdate")
-    public String onSignIn(Model model, @RequestParam long[] checkbox, @RequestParam String submit, @RequestParam(required = false) String text,
+    public String onSignIn(Model model, @RequestParam(required = false) long[] checkbox, @RequestParam String submit, @RequestParam(required = false) String userText,
                             HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("text/html;charset=UTF-8");
         try {
@@ -125,15 +126,30 @@ public class Controller {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (submit.equals("Delete")) {
+        if (submit.equals("Delete") & (checkbox!=null)) {
             taskService.deleteTask(checkbox);
         }
-        else {
-            taskService.updateTask(checkbox[0], text);
+        else if (submit.equals("Update")){
+            taskService.updateTask(checkbox[0], userText);
         }
+        else if (checkbox==null) {model.addAttribute("tasks",taskService.listTasks(user) );
+            model.addAttribute("name", user.getName());}
         model.addAttribute("tasks",taskService.listTasks(user) );
         model.addAttribute("name", user.getName());
         model.addAttribute("i", 0);
+        return "user";
+    }
+    @GetMapping("/pagination")
+    public String pageCount(Model model, @RequestParam int page,  HttpServletRequest req, HttpServletResponse resp) {
+        resp.setContentType("text/html;charset=UTF-8");
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        TaskDAOImpl.pageNumber=page;
+        model.addAttribute("tasks",taskService.listTasks(user) );
+        model.addAttribute("name", user.getName());
         return "user";
     }
 }

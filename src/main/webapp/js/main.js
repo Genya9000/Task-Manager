@@ -25,6 +25,25 @@ $("#signup").toggle(1000);
         $("#createf").toggle(1000);
         $(".table").toggle(500);
     });
+    $("#update").click(function () {
+       if ($("input:checked").length > 1 || $("input:checked").length < 1) {
+           alert("Select only one field for updating");
+       }
+       else {
+$(".taskUpdate").toggle(1000);
+       }
+
+    });
+    $(".cancel3").click(function () {
+        $(".taskUpdate").toggle(1000);
+    });
+    $("#delete").click(function () {
+        if ($("input:checked").length = 0) {
+            alert("Select at least one field");
+        }
+
+
+    });
 });
 
 /* document.addEventListener('DOMContentLoaded', () => {
