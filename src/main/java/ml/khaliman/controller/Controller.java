@@ -8,14 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -87,12 +86,7 @@ public class Controller {
         } else model.addAttribute("signUpError", "The password does not match the login, try another option");
         return "index";
     }
-    /*public Controller(User user){
-        this.user = user;
-    }*/
-    public User getUser(){
-        return user;
-    }
+
 
     @PostMapping("/create")
     public String createTask(Model model, @RequestParam Date userDate, @RequestParam String userText,
@@ -150,6 +144,9 @@ public class Controller {
         TaskDAOImpl.pageNumber=page;
         model.addAttribute("tasks",taskService.listTasks(user) );
         model.addAttribute("name", user.getName());
+        if (page==1)
         return "user";
+        else if (page==2) return "user2";
+        return "user3";
     }
 }

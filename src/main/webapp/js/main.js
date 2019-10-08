@@ -44,6 +44,35 @@ $(".taskUpdate").toggle(1000);
 
 
     });
+    $('.pagination li a').on('click', function(){
+        $('.pagination li a.is-current').removeClass('is-current');
+        $(this).addClass('is-current');
+
+    });
+    $(".pagination-previous").click(function () {
+        if($('.is-current').text() == 1) {
+            window.location.href = "/pagination?page=3";
+            $('.pagination-link:eq(2)').click();
+        }
+        else if ($('.is-current').text() ==2) {
+            window.location.href = "/pagination?page=1";
+            $('.pagination-link:eq(0)').click();
+        }
+        else 	{
+            window.location.href = "/pagination?page=2";
+            $('.pagination-link:eq(1)').click();
+        }
+    });
+    $(".pagination-next").click(function () {
+        if($('.is-current').text() == 1) {
+            console.log($('.is-current').text());
+            $('.pagination-link:eq(1)').click();
+        }
+        else if ($('.is-current').text() ==2) {
+            $('.pagination-link:eq(2)').click();
+        }
+        else 	$('.pagination-link:eq(0)').click();
+    });
 });
 
 /* document.addEventListener('DOMContentLoaded', () => {
