@@ -1,3 +1,4 @@
+<#ftl encoding="UTF-8"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
                 <p>Update</p>
             </a>
 
-            <a class="navbar-item" >
+            <a class="navbar-item" id="delete">
                 <p><input type="submit" name="submit" value="Delete" form="updateDelete" style="border: none"></p>
             </a>
         </div>
@@ -89,27 +90,27 @@
         </thead>
         <tbody>
         <#if tasks??>
-        <form action="deleteUpdate" method="post" id="updateDelete">
+            <form action="deleteUpdate" method="post" id="updateDelete">
             <div class="taskUpdate" style="display: none">
-            <textarea class="textarea is-info field control" placeholder="What I should do" required
+            <textarea class="textarea is-info field control" id="updateText" placeholder="What I should do"
                       style="text-align: center; " name="userText"></textarea>
 
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link " >Submit</button>
-                </div>
-                <div class="content">
-                    <a class="button is-text cancel3 ">Cancel</a>
-                </div>
-            </div></div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link " ><p><input type="submit" name="submit" value="Update" form="updateDelete" style="border: none"></p></button>
+                    </div>
+                    <div class="content">
+                        <a class="button is-text cancel3 ">Cancel</a>
+                    </div>
+                </div></div>
             <#list tasks as task>
 
             <tr style="height: 7vh"><td>
-                ${task?index}
+                    ${task?index}
                 <td><label class="checkbox">
-                    <input type="checkbox" name="checkbox" value="${task.id}">
-                </label><td>${task.date}<td>${task.text}
-                </#list> </form></#if>
+                        <input type="checkbox" name="checkbox" value="${task.id}">
+                    </label><td>${task.date}<td>${task.text}
+                    </#list> </form></#if>
         </tbody>
     </table>
     <nav class="pagination" role="navigation" aria-label="pagination">
@@ -117,13 +118,13 @@
         <a class="pagination-next">Next page</a>
         <ul class="pagination-list">
             <li>
-                <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                <a class="pagination-link " aria-label="Page 1" aria-current="page" href="/pagination?page=1">1</a>
             </li>
             <li>
-                <a class="pagination-link" aria-label="Goto page 2">2</a>
+                <a class="pagination-link is-current" aria-label="Goto page 2" href="/pagination?page=2">2</a>
             </li>
             <li>
-                <a class="pagination-link" aria-label="Goto page 3">3</a>
+                <a class="pagination-link" aria-label="Goto page 3" href="/pagination?page=3">3</a>
             </li>
         </ul>
     </nav>
@@ -143,4 +144,3 @@
 
 </body>
 </html>
-
