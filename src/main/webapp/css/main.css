@@ -6820,7 +6820,7 @@ label.panel-block {
     right: 10vw;
     display: none;
 
-    /*border: 2px solid blue;*/
+
 
 }
 #createf{
@@ -6844,18 +6844,13 @@ table {
 
 }
 .taskUpdate{
-  right: 20vw;
+  margin-left: 20vw;
+  margin-bottom: 2vh;
   width: 60vw;
 }
-#updateText{
-  right: 20vw;
-}
-
 /*
-tbody {
-  counter-reset: heading;
+#updateText{
+  left: 20vw;
 }
-td:first-child  {
-  counter-increment: heading;
-  content: counter(heading);
-}*/
+*/
+

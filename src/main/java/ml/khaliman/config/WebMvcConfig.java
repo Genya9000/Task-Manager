@@ -57,7 +57,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
         adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
-
         return adapter;
     }
 
@@ -70,6 +69,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         ds.setPassword("Admin9000%");
         return ds;
     }
+
     @Bean
     public FreeMarkerViewResolver freemarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
@@ -86,6 +86,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         freeMarkerConfigurer.setDefaultEncoding("UTF-8");
         return freeMarkerConfigurer;
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
