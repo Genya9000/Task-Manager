@@ -1,10 +1,7 @@
 package ml.khaliman.dao;
-
 import ml.khaliman.model.Task;
 import ml.khaliman.model.User;
 import org.springframework.stereotype.Repository;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -31,35 +28,20 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-
     public List<Task> list(User user) {
         Query query = entityManager.createQuery("SELECT task FROM  Task task WHERE task.user = ?1  ORDER BY task.date DESC ")
                 .setParameter(1, user);
-
-
         int pageSize = 5;
-        query.setFirstResult((pageNumber-1) * pageSize);
+        query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
         return query.getResultList();
-
     }
+
     @Override
-    public void update(long id, String text){
+    public void update(long id, String text) {
         Task task = entityManager.find(Task.class, id);
         task.setText(text);
         entityManager.merge(task);
     }
-/*
-    @Override
-    public List<Task> list(Date pattern) {
-        TypedQuery<Task> query = entityManager.createQuery("SELECT c FROM Task c WHERE c.date LIKE :pattern", Task.class);
-        query.setParameter("pattern", "%" + pattern + "%");
-        return query.getResultList();
-    }
 
-    @Override
-    public long count() {
-        TypedQuery<Long> query = entityManager.createQuery("SELECT COUNT(c) FROM Task c", Long.class);
-        return query.getSingleResult();
-    }*/
 }

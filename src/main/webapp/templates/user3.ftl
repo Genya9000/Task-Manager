@@ -20,7 +20,8 @@
             <img src="../images/logobumla.png" width="112" height="28">
         </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -34,7 +35,7 @@
                 Home
             </a>
 
-            <a class="navbar-item" id="create" >
+            <a class="navbar-item" id="create">
                 <p>Create task</p>
             </a>
             <a class="navbar-item" id="update">
@@ -48,7 +49,7 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="buttons" >
+                <div class="buttons">
 
                     <a class="button is-light" onClick='location.href="/logOut"'>
                         Log out
@@ -59,8 +60,8 @@
     </div>
 </nav>
 <section class="section">
-    <h1 class="title" >Welcome ${name}!</h1>
-    <form action="create" method="post" id="createf" >
+    <h1 class="title">Welcome ${name}!</h1>
+    <form action="create" method="post" id="createf">
 
         <input class="input is-info field control" type="date" placeholder="Date input" required
                style="text-align: center; " name="userDate">
@@ -71,7 +72,7 @@
 
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link " >Submit</button>
+                <button class="button is-link ">Submit</button>
             </div>
             <div class="content">
                 <a class="button is-text cancel1 ">Cancel</a>
@@ -97,24 +98,29 @@
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link " ><p><input type="submit" name="submit" value="Update" form="updateDelete" style="border: none"></p></button>
+                        <button class="button is-link "><p><input type="submit" name="submit" value="Update"
+                                                                  form="updateDelete" style="border: none"></p></button>
                     </div>
                     <div class="content">
                         <a class="button is-text cancel3 ">Cancel</a>
                     </div>
-                </div></div>
+                </div>
+            </div>
             <#list tasks as task>
 
-            <tr style="height: 7vh"><td>
+            <tr style="height: 7vh">
+                <td>
                     ${task?index}
                 <td><label class="checkbox">
                         <input type="checkbox" name="checkbox" value="${task.id}">
-                    </label><td>${task.date}<td>${task.text}
+                    </label>
+                <td>${task.date}
+                <td>${task.text}
                     </#list> </form></#if>
         </tbody>
     </table>
     <nav class="pagination" role="navigation" aria-label="pagination">
-        <a class="pagination-previous" title="This is the first page" >Previous</a>
+        <a class="pagination-previous" title="This is the first page">Previous</a>
         <a class="pagination-next">Next page</a>
         <ul class="pagination-list">
             <li>
@@ -132,7 +138,8 @@
 <footer class="footer">
     <div class="content has-text-centered">
         <p>
-            <strong>Made</strong> by <a href="http://genya9000.github.io" target="_blank">Yevhen Khaliman</a>. The source code is licensed
+            <strong>Made</strong> by <a href="http://genya9000.github.io" target="_blank">Yevhen Khaliman</a>. The
+            source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
             is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>

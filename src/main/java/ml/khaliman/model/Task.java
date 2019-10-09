@@ -3,6 +3,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -14,12 +15,11 @@ import java.sql.Date;
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
     private Date date;
     private String text;
 }
