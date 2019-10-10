@@ -78,8 +78,10 @@ public class Controller {
                 session.setAttribute("user", user);
                 session.setAttribute("login", user.getLogin());
                 if ("Yes".equals(saveMe)) {
+                    System.out.println("saveMe нажата");
                     session.setMaxInactiveInterval(60 * 60 * 24 * 10);
-                } else session.setMaxInactiveInterval(-1);
+                } else {session.setMaxInactiveInterval(-1);
+                System.out.println("saveMe не нажата");}
                 System.out.println(session.getAttribute("user").toString());
                 model.addAttribute("name", session.getAttribute("userName"));
                 model.addAttribute("tasks", taskService.listTasks(user));
@@ -142,8 +144,8 @@ public class Controller {
             e.printStackTrace();
         }
         TaskDAOImpl.pageNumber = page;
-        model.addAttribute("tasks", taskService.listTasks(user));
-        model.addAttribute("name", user.getName());
+        model.addAttribute("name", session.getAttribute("userName"));
+        model.addAttribute("tasks", taskService.listTasks((User) session.getAttribute("user")));
         if (page == 1)
             return "user";
         else if (page == 2) return "user2";
