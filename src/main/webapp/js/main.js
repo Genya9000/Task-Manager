@@ -12,10 +12,10 @@ $(document).ready(function() {
 });
 $(function () {
     $("#asignup, .cancel1").click(function () {
-$("#signup").toggle(1000);
+$("#signup, .footer").toggle(1000);
     });
     $("#asignin, .cancel2").click(function () {
-        $("#signin").toggle(1000);
+        $("#signin, .footer").toggle(1000);
     });
     $(".delete").click(function () {
         $("#delete1").remove();

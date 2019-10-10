@@ -6803,12 +6803,8 @@ label.panel-block {
 
 .footer {
   background-color: #fafafa;
-  padding: 2rem 1.5rem 2rem;
-    position:absolute;
-    bottom:0;
-    width: 100%;
-  height: 10vh;
-  top: 90vh;
+  padding: 1.5rem 1.5rem 1.5rem;
+  flex: 0 0 auto;
 }
 .title {
     text-align: center;
@@ -6848,9 +6844,10 @@ table {
   margin-bottom: 2vh;
   width: 60vw;
 }
-/*
-#updateText{
-  left: 20vw;
+html, body{
+  height: 100%;
 }
-*/
-
+body {
+  display: flex;
+  flex-direction: column;
+}
