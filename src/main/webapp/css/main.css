@@ -6821,9 +6821,9 @@ label.panel-block {
 }
 #createf{
   position: absolute;
-  left: 35vw;
+  left: 20vw;
   display: none;
-  width: 30vw;
+  width: 60vw;
 
 }
 table {
@@ -6833,8 +6833,8 @@ table {
 
 }
 .pagination{
-  position:absolute;
-  bottom:15vh;
+  position:fixed;
+  bottom: 5vh;
   right: 10vw;
   width: 80vw;
 

@@ -24,6 +24,7 @@ $("#signup, .footer").toggle(1000);
     $("#create, .cancel1").click(function () {
         $("#createf").toggle(1000);
         $(".table").toggle(500);
+        $(".pagination").toggle(500);
     });
     $("#update").click(function () {
        if ($("input:checked").length > 1 || $("input:checked").length < 1) {
