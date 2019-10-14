@@ -152,16 +152,5 @@ public class Controller {
         return "user3";
     }
 
-    @GetMapping("/")
-    public String isSave(Model model) {
-        if (session.isNew()) {
-            System.out.println("сессии нет");
-            return "redirect:index.html";
-        } else {
-            System.out.println("сессия есть");
-            model.addAttribute("name", session.getAttribute("userName"));
-            model.addAttribute("tasks", taskService.listTasks((User) session.getAttribute("user")));
-            return "user";
-        }
-    }
+
 }
