@@ -151,6 +151,11 @@ public class Controller {
         else if (page == 2) return "user2";
         return "user3";
     }
+    @GetMapping("/")
+    public String pageMain() {
+
+        return "redirect:index.html";
+    }
 
 
 }
